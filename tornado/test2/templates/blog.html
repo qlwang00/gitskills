@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>备忘录</title>
+        <link rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="main">
+            <img class="logo">
+            <div class="container">
+                <h1>备忘录</h1>
+                <hr>
+                <div class="content">
+                    {% for i in range(len(res)) %}
+                        <div class="Title">
+                            <p>
+                                {% import time %}
+                                主题：{{ res[i][0] }}
+                                {% for j in range(20) %}&nbsp;{% end %}
+                                创建时间：
+                                <span class="Time">{{ time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(res[i][2])) }}</span>
+                                {% for j in range(20) %}&nbsp;{% end %}
+                                操作：
+                                <input type="button" class="Article Button Edit" value="编辑" onclick="window.location.href='http://localhost:8888/query?id='+{{ res[i][3] }}">
+                                <input type="button" class="Article Button Delete" value="删除" onclick="window.location.href='http://localhost:8888/delete?id='+{{ res[i][3] }}">
+                            </p>
+                        </div>
+                        <div class="Article">
+                            内容：<br>
+                            <!--<p>{{ res[i][1][0:30] }}<a href="">查看全部</a></p>-->
+                            <p>{{ res[i][1] }}</p>
+                        </div>
+                        <hr>
+                    {% end %}
+                    <form method="get" action="/">
+                        <a href="http://localhost:8888/"><input type="button" class="Article Button Delete" value="创建" onclick="window.location.href('http://localhost:8888/')"></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

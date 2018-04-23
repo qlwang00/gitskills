@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>备忘录</title>
+		<link rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div class="main">
+			<img class="logo">
+			<div class="container">
+				<h1>备忘录</h1>
+				<div class="content">
+				{% for i in range(len(res)) %}
+				<form method="post" action="/query">
+					<p>文章标题：</p>
+					<input type="text" class="Title" name="title" value={{ res[i][0] }} />
+					<p>文章正文：</p>
+					<textarea type="text" class="Article" id="myArticle" name="content" value="">{{ res[i][1] }}</textarea>
+					<br/>
+					<input type="submit" class="Article Button Submit" value="发    布" />
+				</form>
+				{% end %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
